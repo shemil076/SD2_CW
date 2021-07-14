@@ -1,8 +1,13 @@
+package ClassesVersion;
+
 public class Booth {
     private int boothNumber;
     private String patientName;
 
 
+    public Booth(){
+
+    }
 
     public Booth(int boothNumber, String patientName)
     {

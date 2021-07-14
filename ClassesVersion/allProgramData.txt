@@ -1,0 +1,7 @@
+patient in booth 0: sam
+patient in booth 1: mat
+patient in booth 2: kim
+patient in booth 3: meth
+patient in booth 4: dash
+patient in booth 5: ~
+Number of vaccines remaining 143
