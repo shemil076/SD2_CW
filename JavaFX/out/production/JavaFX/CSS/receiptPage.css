@@ -1,0 +1,56 @@
+#body{}
+#lblFirstName , #lblLastName , #lblAge , #lblGender ,#lblContactNumber , #lblEmail , #lblId , #lblCity {
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-font-weight: bold;
+    -fx-border-color: cyan;
+    -fx-text-alignment: justify;
+    -fx-border-width: 3px;
+    -fx-background-color: lightgrey;
+}
+
+#lblDate, #lblVaccine , #lblTime , #lblbooth{
+    -fx-font-weight: bold;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-color: red;
+    -fx-text-alignment: justify;
+    -fx-border-width: 3px;
+    -fx-background-color: lightgrey;
+}
+
+#btnClose{
+    -fx-background-color: pink;
+    -fx-font-size: 20px;
+    -fx-background-radius: 30px;
+    -fx-border-radius:30px;
+    -fx-font-weight: bold;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: red;
+    -fx-text-fill: dimgray;
+
+}
+
+#btnClose:hover{
+    -fx-font-weight: bold;
+    -fx-text-fill: pink;
+    -fx-background-color: dimgrey;
+    -fx-font-size: 20px;
+    -fx-background-radius: 30px;
+    -fx-border-radius:30px;
+    -fx-font-weight: bold;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: greenyellow;
+}
+#lblFirstName:hover , #lblLastName:hover , #lblAge:hover , #lblGender:hover ,#lblContactNumber:hover , #lblEmail:hover , #lblId:hover , #lblCity:hover, #lblDate:hover, #lblVaccine:hover , #lblTime:hover ,#lblbooth:hover{
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+    -fx-background-radius: 30px;
+    -fx-border-radius:30px;
+    -fx-font-weight: bold;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: greenyellow;
+}

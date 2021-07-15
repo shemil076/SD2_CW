@@ -1,16 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="496.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiptController">
+<AnchorPane fx:id="body" prefHeight="496.0" prefWidth="878.0" stylesheets="@../CSS/receiptPage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.receiptController">
    <children>
-      <ImageView fitHeight="496.0" fitWidth="903.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="496.0" fitWidth="903.0" layoutX="-3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/last.png" />
          </image>
       </ImageView>
+      <Text layoutX="238.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VACCINATION RECEIPT" wrappingWidth="422.13671875">
+         <font>
+            <Font name="System Bold Italic" size="37.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="0.8333333333333334" endY="0.4095238095238095" startX="0.07142857142857142" startY="0.44285714285714284">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.07999999821186066" blue="0.07999999821186066" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.007662835249042145">
+                     <color>
+                        <Color red="1.0" green="0.07999999821186066" blue="0.07999999821186066" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.6130268199233716">
+                     <color>
+                        <Color red="0.0763888880610466" green="0.02777777798473835" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9655172413793102">
+                     <color>
+                        <Color red="0.1184210553765297" green="0.1184210553765297" blue="0.1184210553765297" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.1184210553765297" green="0.1184210553765297" blue="0.1184210553765297" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Text layoutX="120.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name  :">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="120.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name   :" wrappingWidth="111.794921875">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="421.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City                       :" wrappingWidth="155.62939453125">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="421.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC / PASSPORT  :  number   " wrappingWidth="153.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="117.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age              :" wrappingWidth="104.513671875">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="117.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender         :" wrappingWidth="109.484375">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="424.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number :" wrappingWidth="145.0615234375">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="423.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail Address     :">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="316.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccine Type    :">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="315.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date                  :" wrappingWidth="127.03271484375">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="315.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time                 :" wrappingWidth="125.056640625">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblFirstName" layoutX="231.0" layoutY="84.0" prefHeight="27.0" prefWidth="150.0" stylesheets="@../CSS/receiptPage.css" textAlignment="CENTER" />
+      <Label fx:id="lblGender" layoutX="231.0" layoutY="193.0" prefHeight="28.0" prefWidth="147.0" textAlignment="CENTER" />
+      <Label fx:id="lblAge" layoutX="229.0" layoutY="157.0" prefHeight="27.0" prefWidth="150.0" textAlignment="CENTER" />
+      <Label fx:id="lblLastName" layoutX="231.0" layoutY="117.0" prefHeight="28.0" prefWidth="149.0" textAlignment="CENTER" />
+      <Label fx:id="lblVaccine" layoutX="447.0" layoutY="292.0" prefHeight="28.0" prefWidth="145.0" textAlignment="CENTER" />
+      <Label fx:id="lblDate" layoutX="447.0" layoutY="326.0" prefHeight="28.0" prefWidth="143.0" textAlignment="CENTER" />
+      <Label fx:id="lblTime" layoutX="445.0" layoutY="364.0" prefHeight="28.0" prefWidth="145.0" textAlignment="CENTER" />
+      <Label fx:id="lblContactNumber" layoutX="570.0" layoutY="86.0" prefHeight="28.0" prefWidth="145.0" textAlignment="CENTER" />
+      <Label fx:id="lblEmail" layoutX="572.0" layoutY="120.0" prefHeight="28.0" prefWidth="145.0" textAlignment="CENTER" />
+      <Label fx:id="lblId" layoutX="571.0" layoutY="157.0" prefHeight="28.0" prefWidth="146.0" textAlignment="CENTER" />
+      <Label fx:id="lblCity" layoutX="568.0" layoutY="212.0" prefHeight="28.0" prefWidth="147.0" textAlignment="CENTER" />
+      <Button fx:id="btnClose" layoutX="665.0" layoutY="437.0" mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="147.0" text="Close" />
+      <Text layoutX="315.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booth Number :">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblbooth" layoutX="445.0" layoutY="258.0" prefHeight="28.0" prefWidth="145.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

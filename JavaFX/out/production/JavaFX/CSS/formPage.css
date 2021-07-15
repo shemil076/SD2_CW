@@ -1,2 +1,30 @@
 #body{}
 
+#generateReceipt{
+    -fx-background-color: cyan;
+    -fx-font-size: 20px;
+    -fx-background-radius: 30px;
+    -fx-border-radius:30px;
+    -fx-font-weight: bold;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: yellow;
+    -fx-text-fill: black;
+}
+
+
+#generateReceipt:hover{
+    -fx-font-weight: bold;
+    -fx-text-fill: greenyellow;
+    -fx-background-color: red;
+    -fx-font-size: 20px;
+    -fx-background-radius: 30px;
+    -fx-border-radius:30px;
+    -fx-font-weight: bold;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: black;
+}
+#city, #contactNumber, #idNumber, #mail, #age, #firstName, #lastName{
+    -fx-background-radius: 30px;
+}
