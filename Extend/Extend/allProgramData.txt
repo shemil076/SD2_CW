@@ -1,7 +1,7 @@
-patient in booth 0: ~ ~
-patient in booth 1: ~ ~
-patient in booth 2: ~ ~
+patient in booth 0: sam man
+patient in booth 1: man sam
+patient in booth 2: jhon jim
 patient in booth 3: ~ ~
-patient in booth 4: kasun bash
-patient in booth 5: netbeams kumara
-Number of vaccines remaining 144
+patient in booth 4: ~ ~
+patient in booth 5: ~ ~
+Number of vaccines remaining 147

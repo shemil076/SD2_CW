@@ -1,0 +1,8 @@
+
+p
+java:S1450"ZRemove the "boothNumber" field and declare it as a local variable in the relevant methods.(Îí¯ 
+Q	java:S125"<This block of commented-out lines of code should be removed.(êŒ¤Œ
+E
+java:S1068"/Remove this unused "boothNumber" private field.(Îí¯ 
+0
+java:S1220""Move this file to a named package.

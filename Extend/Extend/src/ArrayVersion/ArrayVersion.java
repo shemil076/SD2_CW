@@ -19,6 +19,8 @@ public class ArrayVersion {
     public static boolean stored = false;                                                                               // initialise a boolean variable and set as  false
     public static String [] lastNameArray = new String[6];
 
+    public static String firstName, lastName;
+
 
     public static void main(String[] args) throws Exception {
 
@@ -276,118 +278,6 @@ public class ArrayVersion {
     /**+
      * Check whether the booths empty or not.If the booth is empty patient can be added to the respective booth.
      */
-//    private static void addPatientToaBooth()
-//    {
-//        checknotUsingBooths(patientsArray);                                                                             // check the booths are empty or not
-//
-//        if(usingBooths)
-//        {
-//           while (true) {
-//               System.out.println("***********************************************************");
-//               System.out.println("*______________________vaccine Type_______________________*");
-//               System.out.println("*       0         |     AstraZeneca                       *");
-//               System.out.println("*       1         |     Sinopharm                         *");
-//               System.out.println("*       2         |     Pfizer                            *");
-//               System.out.println("***********************************************************\n");
-//               System.out.println("Enter the respective code for the vaccine you prefer or enter 6 to exit: ");
-//
-//               if (input.hasNextInt()){
-//
-//                   int vaccineType = input.nextInt();
-//                   if (vaccineType == 6){
-//                       break;
-//
-//                   } else if ((vaccineType > -1) && (vaccineType <=2)){
-//                       System.out.println("Enter the patients first name: ");
-//                       if (input.hasNext()){
-//                           String firstName = input.next();
-//                           System.out.println("Enter  the patients last name: ");
-//                           String lastName = input.next();
-//
-//                           if (vaccineType == 0){
-//                               if (patientsArray[0].equals("~")){
-//                                   patientsArray[0] = firstName;
-//                                   lastNameArray[0] = lastName;
-//                                   System.out.println("");
-//                                   noOfVaccines -= 1;
-//                                   System.out.println("Requirement is successfully completed");
-//                                   System.out.println(patientsArray[0] +" "+ lastNameArray[0] + " is  added to the booth number " + 0);
-//                               } else if (patientsArray[1].equals("~")){
-//                                   patientsArray[1] = firstName;
-//                                   lastNameArray[1] = lastName;
-//                                   System.out.println("");
-//                                   noOfVaccines -= 1;
-//                                   System.out.println("Requirement is successfully completed");
-//                                   System.out.println(patientsArray[1] + " "+ lastNameArray[1] + " is  added to the booth number " + 1);
-//                               }else{
-//                                   System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
-//                               }
-//                           }else if (vaccineType == 1) {
-//                               if (patientsArray[2].equals("~")){
-//                                   patientsArray[2] = firstName;
-//                                   lastNameArray[2] = lastName;
-//                                   System.out.println("");
-//                                   noOfVaccines -= 1;
-//                                   System.out.println("Requirement is successfully completed");
-//                                   System.out.println(patientsArray[2] + " "+ lastNameArray[2] + " is  added to the booth number " + 2);
-//                               }else if(patientsArray[3].equals("~")){
-//                                   patientsArray[3] = firstName;
-//                                   lastNameArray[3] = lastName;
-//                                   System.out.println("");
-//                                   noOfVaccines -= 1;
-//                                   System.out.println("Requirement is successfully completed");
-//                                   System.out.println(patientsArray[3] +" "+ lastNameArray[3] + " is  added to the booth number " + 3);
-//                               }else{
-//                                   System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
-//                               }
-//                           }else if (vaccineType == 2){
-//                               if (patientsArray[4].equals("~")){
-//                                   patientsArray[4] = firstName;
-//                                   lastNameArray[4] = lastName;
-//                                   System.out.println("");
-//                                   noOfVaccines -= 1;
-//                                   System.out.println("Requirement is successfully completed");
-//                                   System.out.println(patientsArray[4] +" "+ lastNameArray[4] + " is  added to the booth number " + 4);
-//                               }else if (patientsArray[5].equals("~")){
-//                                   patientsArray[5] = firstName;
-//                                   lastNameArray[5] = lastName;
-//                                   System.out.println("");
-//                                   noOfVaccines -= 1;
-//                                   System.out.println("Requirement is successfully completed");
-//                                   System.out.println(patientsArray[5] +" "+ lastNameArray[5] + " is  added to the booth number " + 5);
-//                               }else{
-//                                   System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
-//                               }
-//                           }
-//
-//                       }else{
-//                           System.out.println("Enter a valid name");
-//
-//                       }
-//                   }
-//                   else{
-//                       System.out.println("Input out of range.. enter the respective code to the vaccine as shown above");
-//                   }
-//
-//
-//               }
-//               else{
-//                   System.out.println("Enter the respective code for the vaccine type");
-//               }
-//           }
-//        }
-//        else
-//        {
-//            System.out.println("Already booths are full, if you want to add new patient remove a patient from existing booths ");
-//        }
-//        usingBooths = true;
-//
-//    }
-
-
-
-
-
     private static void addPatientToaBooth()
     {
         checknotUsingBooths(patientsArray);                                                                             // check the booths are empty or not
@@ -410,25 +300,22 @@ public class ArrayVersion {
                     }else if ((vaccineType > -1) && (vaccineType <=2)){
                         if(vaccineType == 0){
                             if (patientsArray[0].equals("~")){
-                                System.out.println("Enter the first name of the patient: ");
-                                String firstName = input.next();
-                                System.out.println("Enter the Surname name of the patient:");
-                                String surname = input.next();
+                                getPatientData();
 
                                 patientsArray[0] = firstName;
-                                lastNameArray[0] = surname;
+                                lastNameArray[0] = lastName;
+
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[0] + " "+ lastNameArray[0] + " is  added to the booth number " + 0);
+
                             } else if (patientsArray[1].equals("~")){
-                                System.out.println("Enter the first name of the patient: ");
-                                String firstName = input.next();
-                                System.out.println("Enter the Surname name of the patient:");
-                                String surname = input.next();
+                                getPatientData();
 
                                 patientsArray[1] = firstName;
-                                lastNameArray[1] = surname;
+                                lastNameArray[1] = lastName;
+
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
@@ -440,24 +327,23 @@ public class ArrayVersion {
 
                         }else if (vaccineType == 1){
                             if (patientsArray[2].equals("~")){
-                                System.out.println("Enter the first name of the patient: ");
-                                String firstName = input.next();
-                                System.out.println("Enter the Surname name of the patient:");
-                                String surname = input.next();
+                                getPatientData();
 
                                 patientsArray[2] = firstName;
-                                lastNameArray[2] = surname;
+                                lastNameArray[2] = lastName;
+
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[2] + " "+ lastNameArray[2] + " is  added to the booth number " + 2);
+
+
                             }else if (patientsArray[3].equals("~")){
-                                System.out.println("Enter the first name of the patient: ");
-                                String firstName = input.next();
-                                System.out.println("Enter the Surname name of the patient:");
-                                String surname = input.next();
+                                getPatientData();
+
                                 patientsArray[3] = firstName;
-                                lastNameArray[3] = surname;
+                                lastNameArray[3] = lastName;
+
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
@@ -470,25 +356,22 @@ public class ArrayVersion {
 
                         }else if (vaccineType == 2){
                             if(patientsArray[4].equals("~")){
-                                System.out.println("Enter the first name of the patient: ");
-                                String firstName = input.next();
-                                System.out.println("Enter the Surname name of the patient:");
-                                String surname = input.next();
+                                getPatientData();
 
                                 patientsArray[4] = firstName;
-                                lastNameArray[4] = surname;
+                                lastNameArray[4] = lastName;
+
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[4] + " "+ lastNameArray[4] + " is  added to the booth number " + 4);
 
                             }else if (patientsArray[5].equals("~")){
-                                System.out.println("Enter the first name of the patient: ");
-                                String firstName = input.next();
-                                System.out.println("Enter the Surname name of the patient:");
-                                String surname = input.next();
+                                getPatientData();
+
                                 patientsArray[5] = firstName;
-                                lastNameArray[5] = surname;
+                                lastNameArray[5] = lastName;
+
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
@@ -915,5 +798,16 @@ public class ArrayVersion {
 
         }
     }
+
+    public static void getPatientData(){
+        System.out.println("Enter the first name of the patient:");
+        firstName = input.next();
+
+        System.out.println("Enter the Surname name of the patient:");
+        lastName = input.next();
+
+    }
+
+
 
 }

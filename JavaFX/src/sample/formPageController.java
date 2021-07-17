@@ -151,22 +151,22 @@ public class formPageController   {
 
                 if(current_city.equals("")){
                     Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
-                    newAlert.setContentText("Current living city is missing, Enter the current city address");
+                    newAlert.setContentText("Current living city is missing, Enter the current city ");
                     newAlert.show();
                 }else{
                     if (id_number.equals("")){
                         Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
-                        newAlert.setContentText("your NIC/PASSPORT number is missing, Enter your NIC/PASSPORT number address");
+                        newAlert.setContentText("your NIC/PASSPORT number is missing, Enter your NIC/PASSPORT number ");
                         newAlert.show();
                     }else{
                         if (patient_age.equals("")){
                             Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
-                            newAlert.setContentText("Your age is missing, Enter the age address");
+                            newAlert.setContentText("Your age is missing, Enter the age ");
                             newAlert.show();
                         }else{
                             if (contact_number.equals("") ){
                                 Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
-                                newAlert.setContentText("Your contact number is missing, Enter the contact number address");
+                                newAlert.setContentText("Your contact number is missing, Enter the contact number");
                                 newAlert.show();
                             }else{
                                 if(e_Mail.equals("")){
@@ -176,7 +176,7 @@ public class formPageController   {
                                 }else{
                                     if(patientsGender.equals("")){
                                         Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
-                                        newAlert.setContentText("Your gender is missing, Enter the the gender address");
+                                        newAlert.setContentText("Your gender is missing, Enter the the gender ");
                                         newAlert.show();
 
                                     } else{
@@ -188,7 +188,6 @@ public class formPageController   {
                                         } else{
 
                                                 String booths =getBoothNumber();
-                                            System.out.println(booths);
 
 
                                             getReceipt.showReceipt(first_name,last_name,e_Mail,id_number,patient_age,current_city,contact_number,patientsGender, vaccine, booths );
