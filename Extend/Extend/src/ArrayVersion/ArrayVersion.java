@@ -249,7 +249,7 @@ public class ArrayVersion {
                 System.out.println("Booth " + i + " is empty");                                                       // print the booth number that empty
             }
             else {
-                System.out.println("booth "+ i + " occupied by " + patientsArray[i] + " " + lastNameArray[i]);                                 // print the booth number and the patient's name that occupied the respective booth
+                System.out.println("booth "+ i + " occupied by " + patientsArray[i] + " " + lastNameArray[i]);          // print the booth number and the patient's name that occupied the respective booth
             }
         }
 
@@ -293,103 +293,103 @@ public class ArrayVersion {
                 System.out.println("***********************************************************\n");
                 System.out.println("Enter the respective code for the vaccine you prefer or enter 6 to exit: ");
 
-                if (input.hasNextInt()){
+                if (input.hasNextInt()){                                                                                // check the input value is empty or not
                     int vaccineType = input.nextInt();
-                    if (vaccineType == 6){
-                        break;
-                    }else if ((vaccineType > -1) && (vaccineType <=2)){
-                        if(vaccineType == 0){
-                            if (patientsArray[0].equals("~")){
-                                getPatientData();
+                    if (vaccineType == 6){                                                                              // check whether the user want to terminate the current option
+                        break;                                                                                          // if the input value is 6 adding patients to the booth option will terminates and go back to the main menu
+                    }else if ((vaccineType > -1) && (vaccineType <=2)){                                                 // check whether the user input value is between -1 to 3 (excluding -1 and 3)
+                        if(vaccineType == 0){                                                                           // assign to the booth 0 ior 2 if user preferred AstraZeneca
+                            if (patientsArray[0].equals("~")){                                                          // assign the patient to the  0th booth if the booth 0 is empty
+                                getPatientData();                                                                       // calling the method to get details of the patient
 
                                 patientsArray[0] = firstName;
                                 lastNameArray[0] = lastName;
 
                                 System.out.println("");
-                                noOfVaccines -= 1;
+                                noOfVaccines -= 1;                                                                      // reduce one vaccine from the vaccine stock
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[0] + " "+ lastNameArray[0] + " is  added to the booth number " + 0);
 
-                            } else if (patientsArray[1].equals("~")){
-                                getPatientData();
+                            } else if (patientsArray[1].equals("~")){                                                   // if the booth number 0 is already taken taken patient will assign to the booth number 1
+                                getPatientData();                                                                       // calling the method to get details of the patient
 
                                 patientsArray[1] = firstName;
                                 lastNameArray[1] = lastName;
 
                                 System.out.println("");
-                                noOfVaccines -= 1;
+                                noOfVaccines -= 1;                                                                      // reduce one vaccine from vaccine stock
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[1] + " "+ lastNameArray[1] + " is  added to the booth number " + 1);
 
                             }else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
+                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths"); // if the booth 0 and 1 is occupied, user will get a warning message
                             }
 
-                        }else if (vaccineType == 1){
-                            if (patientsArray[2].equals("~")){
+                        }else if (vaccineType == 1){                                                                    // if user prefers to get vaccine SinoPharm
+                            if (patientsArray[2].equals("~")){                                                          // check whether the booth 2 is empty, if the booth 2 is not empty patient will add to the booth 2
                                 getPatientData();
 
                                 patientsArray[2] = firstName;
                                 lastNameArray[2] = lastName;
 
                                 System.out.println("");
-                                noOfVaccines -= 1;
+                                noOfVaccines -= 1;                                                                      // reduce one vaccine from vaccine stock
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[2] + " "+ lastNameArray[2] + " is  added to the booth number " + 2);
 
 
-                            }else if (patientsArray[3].equals("~")){
+                            }else if (patientsArray[3].equals("~")){                                                    // if the booth number 2 is occupied patient will add to the booth number 3 if booth number 3 is empty
                                 getPatientData();
 
                                 patientsArray[3] = firstName;
                                 lastNameArray[3] = lastName;
 
                                 System.out.println("");
-                                noOfVaccines -= 1;
+                                noOfVaccines -= 1;                                                                      // reduce one vaccine from the vaccine stock
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[3] + " "+ lastNameArray[3] + " is  added to the booth number " + 3);
                             }
                             else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
+                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths"); // will print a warning message if the booth booths 2 and 3 are occupied
                             }
 
 
-                        }else if (vaccineType == 2){
-                            if(patientsArray[4].equals("~")){
+                        }else if (vaccineType == 2){                                                                    // if the patient prefer to get pfizer
+                            if(patientsArray[4].equals("~")){                                                           // check whether the booth 4 is available, if it is, the patient will added to the booth number 3
                                 getPatientData();
 
                                 patientsArray[4] = firstName;
                                 lastNameArray[4] = lastName;
 
                                 System.out.println("");
-                                noOfVaccines -= 1;
+                                noOfVaccines -= 1;                                                                      // reduce one vaccine from the vaccine stock
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[4] + " "+ lastNameArray[4] + " is  added to the booth number " + 4);
 
-                            }else if (patientsArray[5].equals("~")){
+                            }else if (patientsArray[5].equals("~")){                                                    // if the booth number 4 is already occupied the patient will added to the booth number 5 if the booth number 5 is empty
                                 getPatientData();
 
                                 patientsArray[5] = firstName;
                                 lastNameArray[5] = lastName;
 
                                 System.out.println("");
-                                noOfVaccines -= 1;
+                                noOfVaccines -= 1;                                                                      // reduce a vaccine from the vaccine stock
                                 System.out.println("Requirement is successfully completed");
                                 System.out.println(patientsArray[5] + " "+ lastNameArray[5] + " is  added to the booth number " + 5);
                             }else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
+                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths"); //will print a warning if the booth booths 4 and 5 is occupied
                             }
                         } else{
-                            System.out.println("Input out of range.. enter the respective code to the vaccine as shown above");
+                            System.out.println("Input out of range.. enter the respective code to the vaccine as shown above"); // will print if the user enter other numbers neither numbers between -1 to 3
                         }
 
 
                     } else{
-                        System.out.println("Input out of range.. enter the respective code to the vaccine as shown above");
+                        System.out.println("Input out of range.. enter the respective code to the vaccine as shown above"); // will print if the user enter other numbers neither numbers between -1 to 3
                         break;
                     }
                 }else{
-                    System.out.println("Invalid input, input an integer ");
+                    System.out.println("Invalid input, input an integer ");                                             // will print if user user other data types than ints
                     break;
                 }
 
@@ -397,9 +397,9 @@ public class ArrayVersion {
         }
         else
         {
-            System.out.println("Already booths are full, if you want to add new patient remove a patient from existing booths ");
+            System.out.println("Already booths are full, if you want to add new patient remove a patient from existing booths "); // will print if the booth no longer available
         }
-        usingBooths = true;
+        usingBooths = true;                                                                                             // resetting the changed value
 
     }
 
@@ -419,52 +419,52 @@ public class ArrayVersion {
     private static void removePatientfromaBooth()
     {
 
-        checkUsingBooths(patientsArray);
+        checkUsingBooths(patientsArray);                                                                                // check the using booths
 
         if (!notUsingBooths)
         {
             while (true)
             {
-                System.out.println("Enter the booth number that the patient you want to remove (0-5) or 6 to exit: ");
+                System.out.println("Enter the booth number that the patient you want to remove (0-5) or 6 to exit: ");  // if some booths are occupied user able to select the booth number that wants to delete the current patient
 
-                if (input.hasNextInt())
+                if (input.hasNextInt())                                                                                 // check the value that getting as a booth number is an integer or not
                 {
-                    int boothNo = input.nextInt();
-                    findNumbers(boothNo);
+                    int boothNo = input.nextInt();                                                                      // if the value is an integer the value is assign to the variable
+                    findNumbers(boothNo);                                                                               // check the user input values is in the range of 0 - 6 (including 0 and 6)
                     if (find)
                     {
-                        if (boothNo == 6)
+                        if (boothNo == 6)                                                                               // if the value is 6 this menu will terminate and return to the main menu
                         {
                             break;
                         }
-                        else if (patientsArray[boothNo].equals("~"))
+                        else if (patientsArray[boothNo].equals("~"))                                                    // if not, check the booth number tha enter by the uer is empty or not
                         {
-                            System.out.println("Already booth " + boothNo + " is empty!");
+                            System.out.println("Already booth " + boothNo + " is empty!");                              // will print if the is already empty
                         }
-                        else {
-                            patientsArray[boothNo] = "~";
-                            lastNameArray[boothNo] = "~";
-//                            patientsNamesArray[boothNo] = "~";
+                        else {                                                                                          // if not;
+                            patientsArray[boothNo] = "~";                                                               // the first name of the patient in the respective booth will reset to the default value
+                            lastNameArray[boothNo] = "~";                                                               // the last name of the patient in the respective booth will reset to the default value
+
                             System.out.println("Removed!");
                             System.out.println("");
                         }
                     }else
                     {
-                        System.out.println("Input booth number is out of range");
+                        System.out.println("Input booth number is out of range");                                       // will print if the user enter a value out of range
                     }
                 }
                 else{
-                    System.out.println("Invalid input data type, Integer required");
+                    System.out.println("Invalid input data type, Integer required");                                    // will print if the input data type is other than integer
                     input.next();
                 }
-                find = false;
+                find = false;                                                                                           // reset the changed value
             }
-            find = false;
+            find = false;                                                                                               // reset the changed value
         }else{
-            System.out.println("Nothing to remove");
+            System.out.println("Nothing to remove");                                                                    // will print if all the booths are empty
         }
 
-        notUsingBooths = false;
+        notUsingBooths = false;                                                                                         // reset the changed value
     }
 
 
@@ -475,40 +475,40 @@ public class ArrayVersion {
     {
 //        copyArray(patientsArray);
 
-        for (int i = 0 ; i < patientsArray.length; i++) {
+        for (int i = 0 ; i < patientsArray.length; i++) {                                                               // copy the main array into a sub array
             patientsNamesArray[i] = patientsArray[i];
         }
 
-        if ((!patientsNamesArray[0].equals("~")) || (!patientsNamesArray[1].equals("~")) || (!patientsNamesArray[2].equals("~")) || (!patientsNamesArray[3].equals("~")) || (!patientsNamesArray[4].equals("~")) || (!patientsNamesArray[5].equals("~")))
+        if ((!patientsNamesArray[0].equals("~")) || (!patientsNamesArray[1].equals("~")) || (!patientsNamesArray[2].equals("~")) || (!patientsNamesArray[3].equals("~")) || (!patientsNamesArray[4].equals("~")) || (!patientsNamesArray[5].equals("~"))) // check whether the booths are empty
         {
 
             String temp;
-            for (int i = 0; i < patientsNamesArray.length; i++)
+            for (int i = 0; i < patientsNamesArray.length; i++)                                                         // travel through the copied array
             {
-                for (int j = i; j < patientsNamesArray.length; j++)
+                for (int j = i; j < patientsNamesArray.length; j++)                                                     // assign the respective values to compare
                 {
-                    if (patientsNamesArray[i].compareTo(patientsNamesArray[j])> 0)
+                    if (patientsNamesArray[i].compareTo(patientsNamesArray[j])> 0)                                      // compare the names of  the patient according to
                     {
-                        temp = patientsNamesArray[i];
-                        patientsNamesArray[i] = patientsNamesArray[j];
-                        patientsNamesArray[j] = temp;
+                        temp = patientsNamesArray[i];                                                                   // assign the previous value to a temp variable
+                        patientsNamesArray[i] = patientsNamesArray[j];                                                  // assign the next value to the previous index
+                        patientsNamesArray[j] = temp;                                                                   // assign the value in the temp variable to the next index
                     }
                 }
             }
             System.out.println("Patient names according to alphabetical order");
-            for (int i = 0   ; i <patientsNamesArray.length; i++)
+            for (int i = 0   ; i <patientsNamesArray.length; i++)                                                       // traveling through the sorted array
             {
-                if (patientsNamesArray[i].equals("~"))
+                if (patientsNamesArray[i].equals("~"))                                                                  // if the value is equal to "~", it will change to the next iteration
                 {
                     continue;
                 }
                 else {
-                    System.out.println(patientsNamesArray[i]);
+                    System.out.println(patientsNamesArray[i]);                                                          // if not the names will print according to the alphabetical order
                 }
             }
         }else
         {
-            System.out.println("First add patients to booth, Then sort it");
+            System.out.println("First add patients to booth, Then sort it");                                            // will print if the booths are empty
         }
 
     }
@@ -632,7 +632,7 @@ public class ArrayVersion {
                     {
                         break;
                     }
-                    else if ((value + noOfVaccines <= 150) && (value + noOfVaccines > 0 ) && (0 < value )){                            // check the user input is greater than to 0 or less than or equal to 150
+                    else if ((value + noOfVaccines <= 150) && (value + noOfVaccines > 0 ) && (0 < value )){             // check the user input is greater than to 0 or less than or equal to 150
                         noOfVaccines += value;
                         break;
                     }
@@ -710,7 +710,7 @@ public class ArrayVersion {
      */
     public static void checkUsingBooths(String[] usingBooth)
     {
-        if ((usingBooth[0].equals("~")) || (usingBooth[1].equals("~")) || (usingBooth[2].equals("~")) || (usingBooth[3].equals("~")) || (usingBooth[4].equals("~")) || (usingBooth[5].equals("~")))
+        if ((usingBooth[0].equals("~")) || (usingBooth[1].equals("~")) || (usingBooth[2].equals("~")) || (usingBooth[3].equals("~")) || (usingBooth[4].equals("~")) || (usingBooth[5].equals("~"))) // check
         {
             System.out.println("Booths that already occupied :  ");
 
@@ -742,11 +742,11 @@ public class ArrayVersion {
      */
     public static void checknotUsingBooths(String[] notUsingBooth)
     {
-        if ((notUsingBooth[0].equals("~")) || (notUsingBooth[1].equals("~")) || (notUsingBooth[2].equals("~")) || (notUsingBooth[3].equals("~")) || (notUsingBooth[4].equals("~")) || (notUsingBooth[5].equals("~")))
+        if ((notUsingBooth[0].equals("~")) || (notUsingBooth[1].equals("~")) || (notUsingBooth[2].equals("~")) || (notUsingBooth[3].equals("~")) || (notUsingBooth[4].equals("~")) || (notUsingBooth[5].equals("~")))  // check all the booths whether they are empty
         {
             System.out.println("Booths that already empty :  ");
 
-            if ((!notUsingBooth[0].equals("~")) && (!notUsingBooth[1].equals("~")) && (!notUsingBooth[2].equals("~")) && (!notUsingBooth[3].equals("~")) && (!notUsingBooth[4].equals("~")) && (!notUsingBooth[5].equals("~")))
+            if ((!notUsingBooth[0].equals("~")) && (!notUsingBooth[1].equals("~")) && (!notUsingBooth[2].equals("~")) && (!notUsingBooth[3].equals("~")) && (!notUsingBooth[4].equals("~")) && (!notUsingBooth[5].equals("~"))) //
             {
                 System.out.println("None");
                 System.out.println("");
@@ -756,16 +756,16 @@ public class ArrayVersion {
             {
                 for (int i = 0; i < notUsingBooth.length; i++)
                 {
-                    if (notUsingBooth[i].equals("~"))
+                    if (notUsingBooth[i].equals("~"))                                                                   //check
                     {
 
                         System.out.println("    Booth number : " + i);                                                  //print the empty booths
                     }
                 }
-
             }
         }
     }
+
 
     /**+
      * Store the data without deleting, Able to load the previous stored data
@@ -775,7 +775,7 @@ public class ArrayVersion {
     {
 
         File tempData = new File("allProgramData.txt");
-        boolean exists = tempData.exists();                                                                         // check the file whether it is available or not
+        boolean exists = tempData.exists();                                                                             // check the file whether it is available or not
 
         if (exists)
         {
@@ -784,21 +784,25 @@ public class ArrayVersion {
             while (dataReader.hasNext())
             {
 
-                String data = dataReader.nextLine();                                                                //print the data in allProgram file to the console
-                System.out.println(data);
+                String data = dataReader.nextLine();                                                                    // assigning the string type data from the 'allProgramData' file
+                System.out.println(data);                                                                               //print the data in allProgram file to the console
 
             }
 
-            dataReader.close();
+            dataReader.close();                                                                                         // close the file after loading the its data to the console
 
 
         } else
         {
-            System.out.println("First store your data and load again");
+            System.out.println("First store your data and load again");                                                 // print a warning message if the does not exists
 
         }
     }
 
+
+    /**
+     * Get first name and the last name
+     */
     public static void getPatientData(){
         System.out.println("Enter the first name of the patient:");
         firstName = input.next();
@@ -807,7 +811,4 @@ public class ArrayVersion {
         lastName = input.next();
 
     }
-
-
-
 }

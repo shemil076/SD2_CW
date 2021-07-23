@@ -19,13 +19,17 @@ public class VaccinationCenter {
 
     public static void main(String[] args) throws Exception {
         Patient[] patients = new Patient[6];
+        Patient new_Patient = new Patient();
+        WaitingList new_WaitingList = new WaitingList();
+        Booth[] new_Booth = new Booth[6];
 
         initialise(patients);
+        initialiseBooth(new_Booth);
 
 
         while (run) {                                                                                                   // to run continuously unless the user user exit option
             printMenu();                                                                                                // prints the main menu
-            mainMenu(patients);                                                                                           // calls the switch cases of the main menu
+            mainMenu(patients, new_Booth, new_WaitingList, new_Patient);                                                                                           // calls the switch cases of the main menu
             System.out.println("");
             checkVaccine();                                                                                             // calling the checkVaccine function that check the amount of remaining vaccines
             System.out.println("");
@@ -53,6 +57,18 @@ public class VaccinationCenter {
             patients[i] = new Patient( "~","~",0,"~",0,"~");
         }
     }
+
+    public static void initialiseBooth(Booth[] new_Booth) {
+        for (int i = 0; i < new_Booth.length; i++) {
+            new_Booth[i] = new Booth("~");
+        }
+    }
+
+//    public static void initialise(Booth[] booths) {
+//        for (int i = 0; i < booths.length; i++) {
+//            booths[i] = new Booth( "~");
+//        }
+//    }
 
 
     /**
@@ -91,7 +107,7 @@ public class VaccinationCenter {
      * @param patients an array of Patient class
      * @throws Exception
      */
-    public static void mainMenu(Patient [] patients) throws Exception {
+    public static void mainMenu(Patient [] patients, Booth[] booths,WaitingList list, Patient patient) throws Exception {
 
 
         if (input.hasNext())                                                                                            // filtering data type (Only stings allowed)
@@ -109,7 +125,7 @@ public class VaccinationCenter {
                     System.out.println("***********************************************************\n");
 
 
-                    viewAllVaccinationBooths(patients);                                                                   // first option
+                    viewAllVaccinationBooths(booths);                                                                   // first option
                     break;
 
 
@@ -131,7 +147,9 @@ public class VaccinationCenter {
                     System.out.println("*                   Add Patient to a Booth                *");
                     System.out.println("***********************************************************\n");
 
-                    addPatientToaBooth(patients);                                                                          //third option
+//                    addPatientToaBooth(patients,);                                                                          //third option
+                    addPatientToWaitingList(list, patient);
+                    addPatientToaBooth(list,booths);
                     break;
 
 
@@ -142,7 +160,7 @@ public class VaccinationCenter {
                     System.out.println("*               Remove Patient from a Booth               *");
                     System.out.println("***********************************************************\n");
 
-                    removePatientfromaBooth(patients);                                                                    //fourth option
+                    removePatientfromaBooth(booths,patients,list);                                                                    //fourth option
                     break;
 
 
@@ -230,6 +248,10 @@ public class VaccinationCenter {
                   exitTheProgram();                                                                                     //tenth option
                    break;
 
+                case "300":
+                    showList(list);
+                    break;
+
                 default:
                     System.out.println("Invalid option selected, 'Input out of range'");                                //if the user input an invalid input, the program will not terminate, just repeat bye passing a warning
             }
@@ -240,15 +262,15 @@ public class VaccinationCenter {
 
     /**
      *shows all the vaccination booths. if the booths are empty it shows the booth number and 'empty'. if not it shows the booth number and occupied patients name..
-     * @param patients an array of booth class
+     * @param  booths array of Patient class
      */
-    private static void viewAllVaccinationBooths(Patient [] patients) {
+    private static void viewAllVaccinationBooths(Booth[] booths) {
         for (int i = 0; i < 6; i++) {
-            if (patients[i].getPatientFirstName().equals("~")) {                                                         // check whether the booth is occupied or not
+            if (booths[i].getPatientFirstName().equals("~")) {                                                         // check whether the booth is occupied or not
 
                 System.out.println("Booth " + i + " is empty");                                                          // print the booth number that empty
             } else {
-                System.out.println("booth " + i + " occupied by " + patients[i].getPatientFirstName() + " " + patients[i].getPatientLastName());                         // print the booth number and the patient's name that occupied the respective booth
+                System.out.println("booth " + i + " occupied by " + booths[i].getPatientFirstName());                         // print the booth number and the patient's name that occupied the respective booth
             }
         }
 
@@ -256,15 +278,15 @@ public class VaccinationCenter {
 
     /**
      *shows all the empty booths. If the default value of the patientsNamesArray is "~". Then this method shows as that booth is empty.
-     * @param patients an array of booth class
+     * @param booths an array of Patient class
      */
-    private static void viewAllEmptyBooths(Patient [] patients) {
+    private static void viewAllEmptyBooths(Booth[] booths) {
         for (int i = 0; i < 6; i++) {
-            if (patients[i].getPatientFirstName().equals("~")) {                                                               // check whether the booth is empty or not
+            if (booths[i].getPatientFirstName().equals("~")) {                                                               // check whether the booth is empty or not
                 System.out.println("Booth " + i + " is empty");                                                         // print the empty booth numbers
             }
         }
-        if ((!patients[0].getPatientFirstName().equals("~")) && (!patients[1].getPatientFirstName().equals("~")) && (!patients[2].getPatientFirstName().equals("~")) && (!patients[3].getPatientFirstName().equals("~")) && (!patients[4].getPatientFirstName().equals("~")) && (!patients[5].getPatientFirstName().equals("~"))) { // check all the booths are empty or not
+        if ((!booths[0].getPatientFirstName().equals("~")) && (!booths[1].getPatientFirstName().equals("~")) && (!booths[2].getPatientFirstName().equals("~")) && (!booths[3].getPatientFirstName().equals("~")) && (!booths[4].getPatientFirstName().equals("~")) && (!booths[5].getPatientFirstName().equals("~"))) { // check all the booths are empty or not
             System.out.println("No empty booth is available at the moment");
         }
     }
@@ -275,153 +297,43 @@ public class VaccinationCenter {
 
         /**
      *Check whether the booths empty or not.If the booth is empty patient can be added to the respective booth.
-     * @param patients an array of Patient class
+//     * @param patients an array of Patient class
      */
-    private static void addPatientToaBooth(Patient[] patients) {
-        checknotUsingBooths(patients);                                                                                    // check the booths are empty or not
+    private static void addPatientToaBooth( WaitingList list , Booth [] booth) {
+//        checknotUsingBooths(patients);                                                                                    // check the booths are empty or not
 
-        if (usingBooths) {
+//        list.head.data.getPatientVaccineType();
+//        list.head.data.getPatientFirstName();
+//        WaitingList.findPatientByVaccineType();
 
-            while (true) {
-                System.out.println("***********************************************************");
-                System.out.println("*______________________vaccine Type_______________________*");
-                System.out.println("*       0         |     AstraZeneca                       *");
-                System.out.println("*       1         |     Sinopharm                         *");
-                System.out.println("*       2         |     Pfizer                            *");
-                System.out.println("***********************************************************\n");
-                System.out.println("Enter the respective code for the vaccine you prefer or enter 6 to exit: ");
-
-                if (input.hasNextInt()){
-                    int vaccineType = input.nextInt();
-                    if (vaccineType == 6){
-                        break;
-                    }else if ((vaccineType > -1) && (vaccineType <=2)){
-                        if(vaccineType == 0){
-                            if (patients[0].getPatientFirstName().equals("~")){
-                                getPatientData();
-
-                                patients[0].setPatientFirstName(firstName);
-                                patients[0].setPatientLastName(lastName);
-                                patients[0].setPatientAge(age);
-                                patients[0].setPatientCity(city);
-                                patients[0].setPatientIdNumber(idNumber);
-                                patients[0].setPatientVaccineType("AstraZeneca");
+        if((booth[0].getPatientFirstName().equalsIgnoreCase("~")) || (booth[1].getPatientFirstName().equalsIgnoreCase("~")) ||(booth[2].getPatientFirstName().equalsIgnoreCase("~")) || (booth[3].getPatientFirstName().equalsIgnoreCase("~")) || (booth[4].getPatientFirstName().equalsIgnoreCase("~")) ||(booth[5].getPatientFirstName().equalsIgnoreCase("~")) &&(list.head != null) ){
+            if ( list.head.data.getPatientVaccineType().equalsIgnoreCase("AstraZeneca")){
+//            add patient to booth 0 or1 and delete from the waiting list
 
 
-                                System.out.println("");
-                                noOfVaccines -= 1;
-                                System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[0].getPatientFirstName() + " "+ patients[0].getPatientLastName() + " is  added to the booth number " + 1);
+                if (booth[0].getPatientFirstName().equalsIgnoreCase("~")){
+                    booth[0].setPatientFirstName(WaitingList.deleteByvaccineType(list , "AstraZeneca"));
+                }else if (booth[1].getPatientFirstName().equalsIgnoreCase("~")) {
+                    booth[1].setPatientFirstName(WaitingList.deleteByvaccineType(list , "AstraZeneca"));
+                }
 
-                            } else if (patients[1].getPatientFirstName().equals("~")){
-                                getPatientData();
+            }else if( list.head.data.getPatientVaccineType().equalsIgnoreCase("Sinopharm")){
+//            booth number  2 or 3
+                if (booth[2].getPatientFirstName().equalsIgnoreCase("~")){
+                    booth[2].setPatientFirstName(WaitingList.deleteByvaccineType(list , "Sinopharm"));
+                }else if (booth[3].getPatientFirstName().equalsIgnoreCase("~")) {
+                    booth[3].setPatientFirstName(WaitingList.deleteByvaccineType(list , "Sinopharm"));
+                }
 
-                                patients[1].setPatientFirstName(firstName);
-                                patients[1].setPatientLastName(lastName);
-                                patients[1].setPatientAge(age);
-                                patients[1].setPatientCity(city);
-                                patients[1].setPatientIdNumber(idNumber);
-                                patients[1].setPatientVaccineType("AstraZeneca");
-
-                                System.out.println("");
-                                noOfVaccines -= 1;
-                                System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[1].getPatientFirstName() + " "+ patients[1].getPatientLastName() + " is  added to the booth number " + 1);
-
-                            }else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
-
-                            }
-
-                        }else if (vaccineType == 1){
-                            if (patients[2].getPatientFirstName().equals("~")){
-                                getPatientData();
-
-                                patients[2].setPatientFirstName(firstName);
-                                patients[2].setPatientLastName(lastName);
-                                patients[2].setPatientAge(age);
-                                patients[2].setPatientCity(city);
-                                patients[2].setPatientIdNumber(idNumber);
-                                patients[2].setPatientVaccineType("Sinopharm");
-
-                                System.out.println("");
-                                noOfVaccines -= 1;
-                                System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[2].getPatientFirstName() + " "+ patients[2].getPatientLastName() + " is  added to the booth number " + 2);
-
-
-                            }else if (patients[3].getPatientFirstName().equals("~")){
-                                getPatientData();
-
-                                patients[3].setPatientFirstName(firstName);
-                                patients[3].setPatientLastName(lastName);
-                                patients[3].setPatientAge(age);
-                                patients[3].setPatientCity(city);
-                                patients[3].setPatientIdNumber(idNumber);
-                                patients[3].setPatientVaccineType("Sinopharm");
-
-                                System.out.println("");
-                                noOfVaccines -= 1;
-                                System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[3].getPatientFirstName() + " "+ patients[3].getPatientLastName() + " is  added to the booth number " + 3);
-                            }
-                            else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
-                            }
-
-
-                        }else if (vaccineType == 2){
-                            if(patients[4].getPatientFirstName().equals("~")){
-                                getPatientData();
-
-                                patients[4].setPatientFirstName(firstName);
-                                patients[4].setPatientLastName(lastName);
-                                patients[4].setPatientAge(age);
-                                patients[4].setPatientCity(city);
-                                patients[4].setPatientIdNumber(idNumber);
-                                patients[4].setPatientVaccineType("Pfizer");
-
-                                System.out.println("");
-                                noOfVaccines -= 1;
-                                System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[4].getPatientFirstName() + " "+ patients[4].getPatientLastName() + " is  added to the booth number " + 4);
-
-                            }else if (patients[5].getPatientFirstName().equals("~")){
-                                getPatientData();
-
-                                patients[5].setPatientFirstName(firstName);
-                                patients[5].setPatientLastName(lastName);
-                                patients[5].setPatientAge(age);
-                                patients[5].setPatientCity(city);
-                                patients[5].setPatientIdNumber(idNumber);
-                                patients[5].setPatientVaccineType("Pfizer");
-
-                                System.out.println("");
-                                noOfVaccines -= 1;
-                                System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[5].getPatientFirstName() + " "+ patients[5].getPatientLastName() + " is  added to the booth number " + 5);
-                            }else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
-                            }
-                        } else{
-                            System.out.println("Input out of range.. enter the respective code to the vaccine as shown above");
-                        }
-
-
-                    } else{
-                        System.out.println("Input out of range.. enter the respective code to the vaccine as shown above");
-                        break;
-                    }
-                }else{
-                    System.out.println("Invalid input, input an integer ");
-                    break;
+            }else {
+//            booth number 4 or 5
+                if (booth[4].getPatientFirstName().equalsIgnoreCase("~")){
+                    booth[4].setPatientFirstName(WaitingList.deleteByvaccineType(list , "Pfizer"));
+                }else if (booth[5].getPatientFirstName().equalsIgnoreCase("~")) {
+                    booth[5].setPatientFirstName(WaitingList.deleteByvaccineType(list , "Pfizer"));
                 }
             }
-        } else {
-            System.out.println("Already booths are full, if you want to add new patient remove a patient from existing booths ");
         }
-        usingBooths = true;
-
     }
 
 
@@ -435,12 +347,12 @@ public class VaccinationCenter {
 
     /**
      * Check whether the booths are empty or not. If the respective booth is not empty, user can remove the patient in booth.
-     * @param patients an array of Patient class
+     * @param booths an array of Patient class
      */
 
-    private static void removePatientfromaBooth(Patient [] patients) {
+    private static void removePatientfromaBooth(Booth[] booths, Patient[] patient, WaitingList list) {
 
-        checkUsingBooths(patients);
+        checkUsingBooths(booths);
 
         if (!notUsingBooths) {
             while (true) {
@@ -452,14 +364,27 @@ public class VaccinationCenter {
                     if (find) {
                         if (boothNo == 6) {
                             break;
-                        } else if (patients[boothNo].getPatientFirstName().equals("~")) {
+                        } else if (booths[boothNo].getPatientFirstName().equals("~")) {
                             System.out.println("Already booth " + boothNo + " is empty!");
                         } else {
-                            patients[boothNo].setPatientFirstName("~");
-                            patients[boothNo].setPatientLastName("~");
-                            patients[boothNo].setPatientAge(0);
-                            patients[boothNo].setPatientCity("~");
-                            patients[boothNo].setPatientIdNumber(0);
+                            booths[boothNo].setPatientFirstName("~");
+                            patient[boothNo].setPatientLastName("~");
+                            patient[boothNo].setPatientAge(0);
+                            patient[boothNo].setPatientCity("~");
+                            patient[boothNo].setPatientIdNumber(0);
+
+
+
+                            if ((booths[0].getPatientFirstName().equalsIgnoreCase("~") )|| (booths[1].getPatientFirstName().equalsIgnoreCase("~")) && (list.head != null)){
+                                booths[boothNo].setPatientFirstName(list.deleteByvaccineType(list,"AstraZeneca"));
+
+                            }else if ((booths[0].getPatientFirstName().equalsIgnoreCase("~") )|| (booths[1].getPatientFirstName().equalsIgnoreCase("~")) && (list.head != null)){
+                                booths[boothNo].setPatientFirstName(list.deleteByvaccineType(list,"Sinopharm"));
+
+                            }else if ((booths[0].getPatientFirstName().equalsIgnoreCase("~") )|| (booths[1].getPatientFirstName().equalsIgnoreCase("~")) && (list.head != null)){
+                                booths[boothNo].setPatientFirstName(list.deleteByvaccineType(list,"Pfizer"));
+
+                            }
 
                             System.out.println("Removed!");
                             System.out.println("");
@@ -838,5 +763,50 @@ public class VaccinationCenter {
         }else{
             System.out.println("Please input patients to all the booths to view details");
         }
+    }
+
+    public static void  addPatientToWaitingList(WaitingList new_WaitingList, Patient patient){
+        while (true){
+            System.out.println("***********************************************************");
+            System.out.println("*______________________vaccine Type_______________________*");
+            System.out.println("*       0         |     AstraZeneca                       *");
+            System.out.println("*       1         |     Sinopharm                         *");
+            System.out.println("*       2         |     Pfizer                            *");
+            System.out.println("***********************************************************\n");
+            System.out.println("Enter the respective code for the vaccine you prefer or enter 6 to exit: ");
+
+            if (input.hasNextInt()){
+                int vaccine = input.nextInt();
+                if (vaccine == 6){
+                    break;
+                }else if ((vaccine == 0 ) || (vaccine == 1) || (vaccine == 2)){
+                    getPatientData();
+
+                    patient.setPatientFirstName(firstName);
+                    patient.setPatientLastName(lastName);
+                    patient.setPatientAge(age);
+                    patient.setPatientCity(city);
+                    patient.setPatientIdNumber(idNumber);
+
+                    if (vaccine == 0){
+
+                        patient.setPatientVaccineType("AstraZeneca");
+                    }else if (vaccine == 1){
+                        patient.setPatientVaccineType("Sinopharm");
+                    }else{
+                        patient.setPatientVaccineType("Pfizer");
+                    }
+
+                    new_WaitingList = new_WaitingList.insert(new_WaitingList , patient);
+
+                }else{
+                    System.out.println("Invalid vaccine type");
+                }
+            }
+        }
+    }
+
+    public static void showList(WaitingList list){
+        list.printList(list);
     }
 }
