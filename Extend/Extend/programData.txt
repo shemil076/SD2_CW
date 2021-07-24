@@ -1,0 +1,7 @@
+patient in booth 0: james robert
+patient in booth 1: sarah emily
+patient in booth 2: john michael
+patient in booth 3: emma alice
+patient in booth 4: mark paul
+patient in booth 5: diana rose
+Number of vaccines remaining 144

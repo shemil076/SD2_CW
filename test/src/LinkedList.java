@@ -78,24 +78,23 @@ public class LinkedList {
         //
 
         // Insert the values
-        list = insert(list, 1);
-        list = insert(list, 0);
-        list = insert(list, 1);
-        list = insert(list, 1);
-        list = insert(list, 2);
-        list = insert(list, 0);
-        list = insert(list, 2);
-        list = insert(list, 2);
+        for(int i= 0 ; i < 5 ; i++) {
+            list = insert(list, i);
+        }
+
 
         // Print the LinkedList
         printList(list);
 
         // Delete node at position 0
         // In this case the key is ***at head***
-        deleteByKey(list, 0);
+//        deleteByKey(list, 0);
 
         // Print the LinkedList
-        printList(list);
+//        printList(list);
+
+
+        6
 
     }
     public static LinkedList deleteByKey(LinkedList list,
