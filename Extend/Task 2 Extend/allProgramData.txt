@@ -1,1 +1,49 @@
-Number of vaccines remaining 144
+____________________________________________________________________________
+ patient in booth (First name)  0: james
+ patient's Last name           : robert
+ patient's age                 : 32
+ patient's Living city         : london
+ patient's NIC/PASSPORT number : 1055
+ Vaccination Type              : AstraZeneca
+____________________________________________________________________________
+____________________________________________________________________________
+ patient in booth (First name)  1: ~
+ patient's Last name           : ~
+ patient's age                 : 0
+ patient's Living city         : ~
+ patient's NIC/PASSPORT number : 0
+ Vaccination Type              : ~
+____________________________________________________________________________
+____________________________________________________________________________
+ patient in booth (First name)  2: ~
+ patient's Last name           : ~
+ patient's age                 : 0
+ patient's Living city         : ~
+ patient's NIC/PASSPORT number : 0
+ Vaccination Type              : ~
+____________________________________________________________________________
+____________________________________________________________________________
+ patient in booth (First name)  3: ~
+ patient's Last name           : ~
+ patient's age                 : 0
+ patient's Living city         : ~
+ patient's NIC/PASSPORT number : 0
+ Vaccination Type              : ~
+____________________________________________________________________________
+____________________________________________________________________________
+ patient in booth (First name)  4: ~
+ patient's Last name           : ~
+ patient's age                 : 0
+ patient's Living city         : ~
+ patient's NIC/PASSPORT number : 0
+ Vaccination Type              : ~
+____________________________________________________________________________
+____________________________________________________________________________
+ patient in booth (First name)  5: ~
+ patient's Last name           : ~
+ patient's age                 : 0
+ patient's Living city         : ~
+ patient's NIC/PASSPORT number : 0
+ Vaccination Type              : ~
+____________________________________________________________________________
+Number of vaccines remaining 149

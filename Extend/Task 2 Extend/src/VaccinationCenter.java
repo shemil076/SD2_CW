@@ -14,8 +14,8 @@ public class VaccinationCenter {
     public static boolean usingBooths = true;                                                                           // initialise a boolean variable and set as  true
     public static boolean stored = false;                                                                               // initialise a boolean variable and set as  false
 
-    public static String firstName, lastName, city ;
-    public static int age, idNumber,  patientNumber;
+    public static String firstName, lastName, city;
+    public static int age, idNumber, patientNumber;
 
     public static void main(String[] args) throws Exception {
         Patient[] patients = new Patient[6];
@@ -36,13 +36,13 @@ public class VaccinationCenter {
     /**
      * Check whether the number of vaccines are less than or equal to 20. If number of vaccines are equal or lower than 20. Prints a warning.
      */
-    public static void checkVaccine()
-    {
+    public static void checkVaccine() {
         if (noOfVaccines <= 20)                                                                                         // check the stock of vaccines
         {
-            System.out.println("'WARNING', stock reaches a value of "+ noOfVaccines);
+            System.out.println("'WARNING', stock reaches a value of " + noOfVaccines);
         }
     }
+
     /**
      * Initialise the object array
      *
@@ -50,7 +50,7 @@ public class VaccinationCenter {
      */
     public static void initialise(Patient[] patients) {
         for (int i = 0; i < patients.length; i++) {
-            patients[i] = new Patient( "~","~",0,"~",0,"~");
+            patients[i] = new Patient("~", "~", 0, "~", 0, "~");
         }
     }
 
@@ -91,7 +91,7 @@ public class VaccinationCenter {
      * @param patients an array of Patient class
      * @throws Exception
      */
-    public static void mainMenu(Patient [] patients) throws Exception {
+    public static void mainMenu(Patient[] patients) throws Exception {
 
 
         if (input.hasNext())                                                                                            // filtering data type (Only stings allowed)
@@ -227,8 +227,8 @@ public class VaccinationCenter {
                     System.out.println("*                Exit the Program                         *");
                     System.out.println("***********************************************************\n");
 
-                  exitTheProgram();                                                                                     //tenth option
-                   break;
+                    exitTheProgram();                                                                                     //tenth option
+                    break;
 
                 default:
                     System.out.println("Invalid option selected, 'Input out of range'");                                //if the user input an invalid input, the program will not terminate, just repeat bye passing a warning
@@ -239,10 +239,11 @@ public class VaccinationCenter {
     }
 
     /**
-     *shows all the vaccination booths. if the booths are empty it shows the booth number and 'empty'. if not it shows the booth number and occupied patients name..
+     * shows all the vaccination booths. if the booths are empty it shows the booth number and 'empty'. if not it shows the booth number and occupied patients name..
+     *
      * @param patients an array of booth class
      */
-    private static void viewAllVaccinationBooths(Patient [] patients) {
+    private static void viewAllVaccinationBooths(Patient[] patients) {
         for (int i = 0; i < 6; i++) {
             if (patients[i].getPatientFirstName().equals("~")) {                                                         // check whether the booth is occupied or not
 
@@ -255,10 +256,11 @@ public class VaccinationCenter {
     }
 
     /**
-     *shows all the empty booths. If the default value of the patientsNamesArray is "~". Then this method shows as that booth is empty.
+     * shows all the empty booths. If the default value of the patientsNamesArray is "~". Then this method shows as that booth is empty.
+     *
      * @param patients an array of booth class
      */
-    private static void viewAllEmptyBooths(Patient [] patients) {
+    private static void viewAllEmptyBooths(Patient[] patients) {
         for (int i = 0; i < 6; i++) {
             if (patients[i].getPatientFirstName().equals("~")) {                                                               // check whether the booth is empty or not
                 System.out.println("Booth " + i + " is empty");                                                         // print the empty booth numbers
@@ -270,17 +272,19 @@ public class VaccinationCenter {
     }
 
 
-
-
-
-        /**
-     *Check whether the booths empty or not.If the booth is empty patient can be added to the respective booth.
+    /**
+     * Check whether the booths empty or not.If the booth is empty patient can be added to the respective booth.
+     *
      * @param patients an array of Patient class
      */
     private static void addPatientToaBooth(Patient[] patients) {
         checknotUsingBooths(patients);                                                                                    // check the booths are empty or not
 
-        if (usingBooths) {
+        if (noOfVaccines == 0)                                                                                  // no more patient getting in to the program if vaccines are in out of stock
+        {
+            System.out.println("No vaccines available");
+
+        } else if (usingBooths) {
 
             while (true) {
                 System.out.println("***********************************************************");
@@ -291,13 +295,13 @@ public class VaccinationCenter {
                 System.out.println("***********************************************************\n");
                 System.out.println("Enter the respective code for the vaccine you prefer or enter 6 to exit: ");
 
-                if (input.hasNextInt()){
+                if (input.hasNextInt()) {
                     int vaccineType = input.nextInt();
-                    if (vaccineType == 6){
+                    if (vaccineType == 6) {
                         break;
-                    }else if ((vaccineType > -1) && (vaccineType <=2)){
-                        if(vaccineType == 0){
-                            if (patients[0].getPatientFirstName().equals("~")){
+                    } else if ((vaccineType > -1) && (vaccineType <= 2)) {
+                        if (vaccineType == 0) {
+                            if (patients[0].getPatientFirstName().equals("~")) {
                                 getPatientData();
 
                                 patients[0].setPatientFirstName(firstName);
@@ -311,9 +315,9 @@ public class VaccinationCenter {
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[0].getPatientFirstName() + " "+ patients[0].getPatientLastName() + " is  added to the booth number " + 1);
+                                System.out.println(patients[0].getPatientFirstName() + " " + patients[0].getPatientLastName() + " is  added to the booth number " + 1);
 
-                            } else if (patients[1].getPatientFirstName().equals("~")){
+                            } else if (patients[1].getPatientFirstName().equals("~")) {
                                 getPatientData();
 
                                 patients[1].setPatientFirstName(firstName);
@@ -326,15 +330,15 @@ public class VaccinationCenter {
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[1].getPatientFirstName() + " "+ patients[1].getPatientLastName() + " is  added to the booth number " + 1);
+                                System.out.println(patients[1].getPatientFirstName() + " " + patients[1].getPatientLastName() + " is  added to the booth number " + 1);
 
-                            }else {
+                            } else {
                                 System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
 
                             }
 
-                        }else if (vaccineType == 1){
-                            if (patients[2].getPatientFirstName().equals("~")){
+                        } else if (vaccineType == 1) {
+                            if (patients[2].getPatientFirstName().equals("~")) {
                                 getPatientData();
 
                                 patients[2].setPatientFirstName(firstName);
@@ -347,10 +351,10 @@ public class VaccinationCenter {
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[2].getPatientFirstName() + " "+ patients[2].getPatientLastName() + " is  added to the booth number " + 2);
+                                System.out.println(patients[2].getPatientFirstName() + " " + patients[2].getPatientLastName() + " is  added to the booth number " + 2);
 
 
-                            }else if (patients[3].getPatientFirstName().equals("~")){
+                            } else if (patients[3].getPatientFirstName().equals("~")) {
                                 getPatientData();
 
                                 patients[3].setPatientFirstName(firstName);
@@ -363,15 +367,14 @@ public class VaccinationCenter {
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[3].getPatientFirstName() + " "+ patients[3].getPatientLastName() + " is  added to the booth number " + 3);
-                            }
-                            else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
+                                System.out.println(patients[3].getPatientFirstName() + " " + patients[3].getPatientLastName() + " is  added to the booth number " + 3);
+                            } else {
+                                System.out.println("Booths reserved for  Sinopharm are already full, if you want to add new patient remove a patient from existing booths");
                             }
 
 
-                        }else if (vaccineType == 2){
-                            if(patients[4].getPatientFirstName().equals("~")){
+                        } else if (vaccineType == 2) {
+                            if (patients[4].getPatientFirstName().equals("~")) {
                                 getPatientData();
 
                                 patients[4].setPatientFirstName(firstName);
@@ -384,9 +387,9 @@ public class VaccinationCenter {
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[4].getPatientFirstName() + " "+ patients[4].getPatientLastName() + " is  added to the booth number " + 4);
+                                System.out.println(patients[4].getPatientFirstName() + " " + patients[4].getPatientLastName() + " is  added to the booth number " + 4);
 
-                            }else if (patients[5].getPatientFirstName().equals("~")){
+                            } else if (patients[5].getPatientFirstName().equals("~")) {
                                 getPatientData();
 
                                 patients[5].setPatientFirstName(firstName);
@@ -399,20 +402,20 @@ public class VaccinationCenter {
                                 System.out.println("");
                                 noOfVaccines -= 1;
                                 System.out.println("Requirement is successfully completed");
-                                System.out.println(patients[5].getPatientFirstName() + " "+ patients[5].getPatientLastName() + " is  added to the booth number " + 5);
-                            }else {
-                                System.out.println("Booths reserved for  AstraZeneca are already full, if you want to add new patient remove a patient from existing booths");
+                                System.out.println(patients[5].getPatientFirstName() + " " + patients[5].getPatientLastName() + " is  added to the booth number " + 5);
+                            } else {
+                                System.out.println("Booths reserved for  Pfizer are already full, if you want to add new patient remove a patient from existing booths");
                             }
-                        } else{
+                        } else {
                             System.out.println("Input out of range.. enter the respective code to the vaccine as shown above");
                         }
 
 
-                    } else{
+                    } else {
                         System.out.println("Input out of range.. enter the respective code to the vaccine as shown above");
                         break;
                     }
-                }else{
+                } else {
                     System.out.println("Invalid input, input an integer ");
                     break;
                 }
@@ -425,20 +428,13 @@ public class VaccinationCenter {
     }
 
 
-
-
-
-
-
-
-
-
     /**
      * Check whether the booths are empty or not. If the respective booth is not empty, user can remove the patient in booth.
+     *
      * @param patients an array of Patient class
      */
 
-    private static void removePatientfromaBooth(Patient [] patients) {
+    private static void removePatientfromaBooth(Patient[] patients) {
 
         checkUsingBooths(patients);
 
@@ -482,10 +478,11 @@ public class VaccinationCenter {
     }
 
     /**
-     *Sort the patients names in the booths according to alphabetical order.
+     * Sort the patients names in the booths according to alphabetical order.
+     *
      * @param patients an array of Patient class
      */
-    private static void viewPatientsSortedInAlphabeticalOrder(Patient [] patients)                                           //referring from GeeksforGeek Available from https://www.geeksforgeeks.org/java-program-to-sort-names-in-an-alphabetical-order/
+    private static void viewPatientsSortedInAlphabeticalOrder(Patient[] patients)                                           //referring from GeeksforGeek Available from https://www.geeksforgeeks.org/java-program-to-sort-names-in-an-alphabetical-order/
     {
         for (int i = 0; i < patients.length; i++) {
             patientsNamesArray[i] = patients[i].getPatientFirstName();
@@ -518,11 +515,12 @@ public class VaccinationCenter {
     }
 
     /**
-     *if the user calls the respective code for this method. The current data in the program will save to a file.
+     * if the user calls the respective code for this method. The current data in the program will save to a file.
+     *
      * @param patients an array of Patient class
      * @throws Exception
      */
-    private static void storeProgramDataIntoFile(Patient [] patients) throws Exception {                                     // referring Java T Point Available from https://www.javatpoint.com/java-bufferedwriter-class
+    private static void storeProgramDataIntoFile(Patient[] patients) throws Exception {                                     // referring Java T Point Available from https://www.javatpoint.com/java-bufferedwriter-class
 
         checkPatientsNamesArray(patients);
         if (checkPatientsNames) {
@@ -531,17 +529,17 @@ public class VaccinationCenter {
             for (int i = 0; i < patients.length; i++) {
                 writer.write("____________________________________________________________________________");
                 writer.newLine();
-                writer.write(" patient in booth " + i + ": " + patients[i].getPatientFirstName().toString());               // write the data of booths to the programData file
+                writer.write(" patient in booth (First name)" + i + ": " + patients[i].getPatientFirstName().toString());               // write the data of booths to the programData file
                 writer.newLine();
-                writer.write(" patient's Last name "  + patients[i].getPatientLastName().toString());
+                writer.write(" patient's Last name          : " + patients[i].getPatientLastName().toString());
                 writer.newLine();
-                writer.write(" patient's age"  + Integer.toString(patients[i].getPatientAge()));
+                writer.write(" patient's age                : " + Integer.toString(patients[i].getPatientAge()));
                 writer.newLine();
-                writer.write(" patient's Living city "  + patients[i].getPatientCity().toString());
+                writer.write(" patient's Living city        : " + patients[i].getPatientCity().toString());
                 writer.newLine();
-                writer.write(" patient's age"  + Integer.toString(patients[i].getPatientIdNumber()));
+                writer.write(" patient's Id number          : " + Integer.toString(patients[i].getPatientIdNumber()));
                 writer.newLine();
-                writer.write(" Vaccination Type "  + patients[i].getPatientVaccineType().toString());
+                writer.write(" Vaccination Type             : " + patients[i].getPatientVaccineType().toString());
                 writer.newLine();
                 writer.write("____________________________________________________________________________");
                 writer.newLine();
@@ -558,17 +556,17 @@ public class VaccinationCenter {
             for (int j = 0; j < patients.length; j++) {
                 writerAll.write("____________________________________________________________________________");
                 writerAll.newLine();
-                writerAll.write(" patient in booth (First name) " + j + ": " + patients[j].getPatientFirstName().toString());               // write the data of booths to the programData file
+                writerAll.write(" patient in booth (First name)  " + j + ": " + patients[j].getPatientFirstName().toString());               // write the data of booths to the programData file
                 writerAll.newLine();
-                writerAll.write(" patient's Last name "  + patients[j].getPatientLastName().toString());
+                writerAll.write(" patient's Last name           : " + patients[j].getPatientLastName().toString());
                 writerAll.newLine();
-                writerAll.write(" patient's age "  + Integer.toString(patients[j].getPatientAge()));
+                writerAll.write(" patient's age                 : " + Integer.toString(patients[j].getPatientAge()));
                 writerAll.newLine();
-                writerAll.write(" patient's Living city "  + patients[j].getPatientCity().toString());
+                writerAll.write(" patient's Living city         : " + patients[j].getPatientCity().toString());
                 writerAll.newLine();
-                writerAll.write(" patient's NIC/PASSPORT number "  + Integer.toString(patients[j].getPatientIdNumber()));
+                writerAll.write(" patient's NIC/PASSPORT number : " + Integer.toString(patients[j].getPatientIdNumber()));
                 writerAll.newLine();
-                writerAll.write(" Vaccination Type "  + patients[j].getPatientVaccineType().toString());
+                writerAll.write(" Vaccination Type              : " + patients[j].getPatientVaccineType().toString());
                 writerAll.newLine();
                 writerAll.write("____________________________________________________________________________");
                 writerAll.newLine();
@@ -585,7 +583,8 @@ public class VaccinationCenter {
     }
 
     /**
-     *Read the stored file and print the data in the file
+     * Read the stored file and print the data in the file
+     *
      * @throws IOException
      */
     private static void loadProgramDataFromFile() throws IOException {                                                  //referring from W3schools Available from https://www.w3schools.com/java/java_files_read.asp
@@ -618,7 +617,7 @@ public class VaccinationCenter {
     }
 
     /**
-     *print the remaining number of vaccines
+     * print the remaining number of vaccines
      */
     private static void viewRemainingVaccinations() {
 
@@ -626,7 +625,7 @@ public class VaccinationCenter {
     }
 
     /**
-     *check the remaining number of vaccines and if the remaining number of vaccines are less than 150. It allow to add vaccines upto sum of "remaining" and "add vaccienes"  are equal to 150
+     * check the remaining number of vaccines and if the remaining number of vaccines are less than 150. It allow to add vaccines upto sum of "remaining" and "add vaccienes"  are equal to 150
      */
     public static void addVaccinationsToTheStock() {
         while (true) {
@@ -659,7 +658,8 @@ public class VaccinationCenter {
     }
 
     /**
-     *When the user wants to exit the program, program will terminate by making the condition of the while loop in main method as false.
+     * When the user wants to exit the program, program will terminate by making the condition of the while loop in main method as false.
+     *
      * @throws IOException
      */
     public static void exitTheProgram() throws IOException {
@@ -679,6 +679,7 @@ public class VaccinationCenter {
 
     /**
      * Store the data without deleting, Able to load the previous stored data
+     *
      * @throws IOException
      */
     private static void loadPreviousProgramDataFromFile() throws IOException {                                           //referring from W3schools Available from https://www.w3schools.com/java/java_files_read.asp
@@ -701,6 +702,7 @@ public class VaccinationCenter {
 
     /**
      * check whether the booths are empty or not, and print a list of  booths that are occupied if the booths are already occupied
+     *
      * @param booths an array of booth class
      */
     public static void checkUsingBooths(Booth[] booths) {
@@ -730,9 +732,10 @@ public class VaccinationCenter {
 
     /**
      * check whether the booths are empty or not. And if there are empty booths, they will print as a list of empty booths.
+     *
      * @param patients an arrray of Patient class
      */
-    public static void checknotUsingBooths(Patient [] patients) {
+    public static void checknotUsingBooths(Patient[] patients) {
         String[] notUsingBooth = new String[patients.length];
         for (int i = 0; i < patients.length; i++) {
             notUsingBooth[i] = patients[i].getPatientFirstName();
@@ -758,7 +761,8 @@ public class VaccinationCenter {
     }
 
     /**
-     *Basically this check the range of the input booth number
+     * Basically this check the range of the input booth number
+     *
      * @param integer an array of boot class
      */
     public static void findNumbers(int integer) {
@@ -770,24 +774,25 @@ public class VaccinationCenter {
     }
 
     /**
-     *check whether the booth is empty or not.
+     * check whether the booth is empty or not.
+     *
      * @param patients an array of Patient class
      */
-    public static void checkPatientsNamesArray(Patient [] patients) {
+    public static void checkPatientsNamesArray(Patient[] patients) {
         if ((!patients[0].getPatientFirstName().equals("~")) || (!patients[1].getPatientFirstName().equals("~")) || (!patients[2].getPatientFirstName().equals("~")) || (!patients[3].getPatientFirstName().equals("~")) || (!patients[4].getPatientFirstName().equals("~")) || (!patients[5].getPatientFirstName().equals("~"))) {
             checkPatientsNames = true;
         }
     }
 
 
-    public static void getPatientData(){
+    public static void getPatientData() {
         System.out.println("Enter the first name of the patient:");
         firstName = input.next();
 
         System.out.println("Enter the Surname name of the patient:");
         lastName = input.next();
 
-        while(true) {
+        while (true) {
             System.out.println("Enter patients age");
             if (input.hasNextInt()) {
                 age = input.nextInt();
@@ -803,7 +808,7 @@ public class VaccinationCenter {
         System.out.println("Enter the current living city of the patient:");
         city = input.next();
 
-        while(true) {
+        while (true) {
             System.out.println("Enter the patient's NIC/PASSPORT number (Only the integers)");
             if (input.hasNextInt()) {
                 idNumber = input.nextInt();
@@ -835,7 +840,7 @@ public class VaccinationCenter {
                     input.next();
                 }
             }
-        }else{
+        } else {
             System.out.println("Please input patients to all the booths to view details");
         }
     }

@@ -48,7 +48,7 @@ public class Patient extends Booth{
     }
 
     public void setPatientIdNumber(int patientIdNumber) {
-        patientIdNumber = patientIdNumber;
+        this.patientIdNumber = patientIdNumber;
     }
 
     public String getPatientVaccineType() {
