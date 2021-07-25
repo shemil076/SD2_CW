@@ -18,7 +18,7 @@ public class VaccinationCenter {
     public static String firstName, lastName, city ;
     public static int age, idNumber,  patientNumber;
 
-    public static LinkedList<Object> linkedListAstraZeneca = new LinkedList<Object>();
+    public static LinkedList<Patient> linkedListAstraZeneca = new LinkedList<Patient>();
 
     public static LinkedList<Patient> linkedListSinopharm = new LinkedList<Patient>();
 
@@ -29,16 +29,9 @@ public class VaccinationCenter {
     public static void main(String[] args) throws Exception {
         Patient[] patients = new Patient[6];
 
-        Patient[] patientsNamesAstraZeneca = new Patient [5];
 
-//        Patient[] testPatients = new Patient[6];
 
-         Patient newPatient = new Patient();
-         Patient patientAstraZeneca = new Patient();
-         Patient patientSinopharm = new Patient();
-         Patient patientPfizer = new Patient();
 
-        Patient patientAstraZeneca2 = new Patient();
 
 
 //         patientAstraZeneca.setPatientFirstName("smith");
@@ -88,7 +81,7 @@ public class VaccinationCenter {
 
         while (run) {                                                                                                   // to run continuously unless the user user exit option
             printMenu();                                                                                                // prints the main menu
-            mainMenu(patients,newPatient, patientAstraZeneca ,patientsNamesAstraZeneca);                                                                                           // calls the switch cases of the main menu
+            mainMenu(patients);                                                                                           // calls the switch cases of the main menu
             System.out.println("");
             checkVaccine();                                                                                             // calling the checkVaccine function that check the amount of remaining vaccines
             System.out.println("");
@@ -159,7 +152,7 @@ public class VaccinationCenter {
      * @param patients an array of Patient class
      * @throws Exception
      */
-    public static void mainMenu(Patient [] patients, Patient newPatient, Patient patientAstraZeneca, Patient [] patientsNamesAstraZeneca) throws Exception {
+    public static void mainMenu(Patient [] patients) throws Exception {
 
 
         if (input.hasNext())                                                                                            // filtering data type (Only stings allowed)
@@ -203,7 +196,7 @@ public class VaccinationCenter {
                     System.out.println("*                   Add Patient to a Booth                *");
                     System.out.println("***********************************************************\n");
 
-                    addPatientToaBooth(patients, newPatient, patientAstraZeneca, patientsNamesAstraZeneca);                                                                          //third option
+                    addPatientToaBooth(patients);                                                                          //third option
                     break;
 
 
@@ -214,7 +207,7 @@ public class VaccinationCenter {
                     System.out.println("*               Remove Patient from a Booth               *");
                     System.out.println("***********************************************************\n");
 
-                    removePatientfromaBooth(patients, newPatient);                                                                    //fourth option
+                    removePatientfromaBooth(patients);                                                                    //fourth option
                     break;
 
 
@@ -348,12 +341,17 @@ public class VaccinationCenter {
      *Check whether the booths empty or not.If the booth is empty patient can be added to the respective booth.
      * @param patients an array of Patient class
      */
-    private static void addPatientToaBooth(Patient[] patients, Patient newPatient,Patient patientAstraZeneca, Patient[] patientsNamesAstraZeneca) {
+    private static void addPatientToaBooth(Patient[] patients) {
 
-        int i = 0;
+
+//        int i = 0;
         checknotUsingBooths(patients);                                                                                    // check the booths are empty or not
 
-        if (usingBooths) {
+        if (noOfVaccines == 0)                                                                                  // no more patient getting in to the program if vaccines are in out of stock
+        {
+            System.out.println("No vaccines available");
+
+        } else if (usingBooths) {
 
             while (true) {
                 System.out.println("***********************************************************");
@@ -403,31 +401,36 @@ public class VaccinationCenter {
 
                             }else {
 
+                                Patient patientAstraZeneca = new Patient();
+
 
                                 getPatientData();
-//                                patientsNamesAstraZeneca[i].setPatientLastName(firstName);
-//                                patientsNamesAstraZeneca[i].setPatientLastName(lastName);
-//                                patientsNamesAstraZeneca[i].setPatientAge(age);
-//                                patientsNamesAstraZeneca[i].setPatientCity(city);
-//                                patientsNamesAstraZeneca[i].setPatientIdNumber(idNumber);
-//                                patientsNamesAstraZeneca[i].setPatientVaccineType("AstraZeneca");
-
-                                String patientFirstName = firstName;
-                                String patientLastName = lastName;
-                                int patientAge = age;
-                                String patientCity = city;
-                                int patientIdNumber = idNumber;
-                                String patientVaccineType = "AstraZeneca";
+                                patientAstraZeneca.setPatientFirstName(firstName);
+                                patientAstraZeneca.setPatientLastName(lastName);
+                                patientAstraZeneca.setPatientAge(age);
+                                patientAstraZeneca.setPatientCity(city);
+                                patientAstraZeneca.setPatientIdNumber(idNumber);
+                                patientAstraZeneca.setPatientVaccineType("AstraZeneca");
 
 
+                                System.out.println("This is the first name of the patient: "+ patientAstraZeneca.getPatientFirstName() );
 
-                                Object[] astraList = {patientFirstName, patientLastName, patientAge, patientCity,patientIdNumber, patientVaccineType};
+//                                String patientFirstName = firstName;
+//                                String patientLastName = lastName;
+//                                int patientAge = age;
+//                                String patientCity = city;
+//                                int patientIdNumber = idNumber;
+//                                String patientVaccineType = "AstraZeneca";
 
 
-                                linkedListAstraZeneca.add(astraList);
 
-                                System.out.println(i);
-                                i++;
+//                                Object[] astraList = {patientFirstName, patientLastName, patientAge, patientCity,patientIdNumber, patientVaccineType};
+
+
+                                linkedListAstraZeneca.add(patientAstraZeneca);
+
+//                                System.out.println(i);
+//                                i++;
                                 System.out.println("Booths reserved for AstraZeneca vaccines was already occupied So " + firstName + " was added to the waitinglist");
 
 
@@ -466,17 +469,18 @@ public class VaccinationCenter {
                                 System.out.println(patients[3].getPatientFirstName() + " "+ patients[3].getPatientLastName() + " is  added to the booth number " + 3);
                             }
                             else {
-
+                                Patient patientSinopharm = new Patient();
 
                                 getPatientData();
-                                newPatient.setPatientFirstName(firstName);
-                                newPatient.setPatientLastName(lastName);
-                                newPatient.setPatientAge(age);
-                                newPatient.setPatientCity(city);
-                                newPatient.setPatientIdNumber(idNumber);
-                                newPatient.setPatientVaccineType("Sinopharm");
+                                patientSinopharm.setPatientFirstName(firstName);
+                                patientSinopharm.setPatientLastName(lastName);
+                                patientSinopharm.setPatientAge(age);
+                                patientSinopharm.setPatientCity(city);
+                                patientSinopharm.setPatientIdNumber(idNumber);
+                                patientSinopharm.setPatientVaccineType("Sinopharm");
 
-                                linkedListSinopharm.add(newPatient);
+                                linkedListSinopharm.add(patientSinopharm);
+
                                 System.out.println("Booths reserved for Sinopharm vaccines was already occupied So " + firstName + " was added to the waitinglist");
 
                             }
@@ -514,19 +518,18 @@ public class VaccinationCenter {
                                 System.out.println(patients[5].getPatientFirstName() + " "+ patients[5].getPatientLastName() + " is  added to the booth number " + 5);
                             }else {
 
+                                Patient patientPfizer = new Patient();
+
                                 getPatientData();
-                                newPatient.setPatientFirstName(firstName);
-                                newPatient.setPatientLastName(lastName);
-                                newPatient.setPatientAge(age);
-                                newPatient.setPatientCity(city);
-                                newPatient.setPatientIdNumber(idNumber);
-                                newPatient.setPatientVaccineType("Pfizer");
+                                patientPfizer.setPatientFirstName(firstName);
+                                patientPfizer.setPatientLastName(lastName);
+                                patientPfizer.setPatientAge(age);
+                                patientPfizer.setPatientCity(city);
+                                patientPfizer.setPatientIdNumber(idNumber);
+                                patientPfizer.setPatientVaccineType("Pfizer");
 
-                                linkedListPfizer.add(newPatient);
+                                linkedListPfizer.add(patientPfizer);
                                 System.out.println("Booths reserved for Pfizer vaccines was already occupied So " + firstName + " was added to the waitinglist");
-
-
-
 
                             }
                         } else{
@@ -566,7 +569,7 @@ public class VaccinationCenter {
      * @param patients an array of Patient class
      */
 
-    private static void removePatientfromaBooth(Patient [] patients, Patient newPatient) {
+    private static void removePatientfromaBooth(Patient [] patients) {
 
         checkUsingBooths(patients);
 
@@ -594,16 +597,17 @@ public class VaccinationCenter {
 
                             }else {
 
-                                System.out.println(linkedListAstraZeneca.get(0));
+                                System.out.println(linkedListAstraZeneca.getFirst().getPatientFirstName());
 
 
-//                                patients[boothNo].setPatientFirstName(linkedListAstraZeneca.getFirst().getPatientFirstName());
-//                                patients[boothNo].setPatientLastName(linkedListAstraZeneca.getFirst().getPatientLastName());
-//                                patients[boothNo].setPatientAge(linkedListAstraZeneca.getLast().getPatientAge());
-//                                patients[boothNo].setPatientCity(linkedListAstraZeneca.getLast().getPatientCity());
-//                                patients[boothNo].setPatientVaccineType(linkedListAstraZeneca.getFirst().getPatientVaccineType());
+                                patients[boothNo].setPatientFirstName(linkedListAstraZeneca.getFirst().getPatientFirstName());
+                                patients[boothNo].setPatientLastName(linkedListAstraZeneca.getFirst().getPatientLastName());
+                                patients[boothNo].setPatientAge(linkedListAstraZeneca.getLast().getPatientAge());
+                                patients[boothNo].setPatientCity(linkedListAstraZeneca.getLast().getPatientCity());
+                                patients[boothNo].setPatientVaccineType(linkedListAstraZeneca.getFirst().getPatientVaccineType());
 
                                 linkedListAstraZeneca.removeFirst();
+                                noOfVaccines -= 1;
 
 
                             }
@@ -623,7 +627,9 @@ public class VaccinationCenter {
                                     patients[boothNo].setPatientAge(linkedListSinopharm.getLast().getPatientAge());
                                     patients[boothNo].setPatientCity(linkedListSinopharm.getLast().getPatientCity());
                                     patients[boothNo].setPatientVaccineType(linkedListSinopharm.getFirst().getPatientVaccineType());
+
                                     linkedListSinopharm.removeFirst();
+                                    noOfVaccines -= 1;
 
                                 }
 
@@ -644,6 +650,7 @@ public class VaccinationCenter {
                                     patients[boothNo].setPatientVaccineType(linkedListPfizer.getFirst().getPatientVaccineType());
 
                                     linkedListPfizer.removeFirst();
+                                    noOfVaccines -= 1;
                                 }
                             }
 
@@ -1129,7 +1136,7 @@ public class VaccinationCenter {
     public static void showLists(){
 
 
-        System.out.println("Astrazeneca" + linkedListAstraZeneca.get(0));
+        System.out.println("Astrazeneca" + linkedListAstraZeneca);
         System.out.println("");
         System.out.println("Sinopharm" + linkedListSinopharm);
         System.out.println("");
